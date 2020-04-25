@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
 import 'package:uzairleo_homewifi/Screens/SignUp.dart';
+import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
+import 'package:uzairleo_homewifi/Widgets/FadeRoute.dart';
 
 class LoginSevenPage extends StatefulWidget {
     static final String path = "lib/src/pages/login/login7.dart";
@@ -150,7 +152,8 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                   ),
                   onPressed: () {
                     print("Login pressed");
-                    Navigator.push(context,MaterialPageRoute(
+                    Navigator.push(context,
+                    MaterialPageRoute(
                       builder: (context)=>(DashBoard())
                     ));
                   },
@@ -169,9 +172,8 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                 onTap: (){
                   print("SignUp pressed");
                   Navigator.of(context).push(
-                    CupertinoPageRoute(
-                      builder: (context)=>(SignUpPage())),
-                  );
+                    FadeRoute(page:SignUpPage()),
+                    );
                 },
                 child:
                  Text("Sign Up ", 
