@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uzairleo_homewifi/Screens/Login.dart';
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
-
+double wifiSize=45;
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
     Future.delayed(
-      Duration(seconds:4),
+      Duration(seconds:6),
       (){
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -73,8 +74,18 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.white70,
       child: CircleAvatar(
         radius: 58,
-        backgroundImage:  AssetImage('Assets/leo.png')),
-      
+        // backgroundImage:  AssetImage('Assets/leo.png'),
+        child: Stack(
+            children: <Widget>[
+              Opacity(opacity: 0.8,
+              child:  Image.asset('Assets/leo.png'),),
+              // SizedBox(height: 60,),
+              Center(child: Icon(FontAwesomeIcons.wifi,size:wifiSize,)),
+              
+            ],
+          
+        ),
+      ),
     );
   }
 }

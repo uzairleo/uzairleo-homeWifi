@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
+import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -177,9 +178,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   onPressed: () {
                     print("Signuo pressed");
-                    Navigator.push(context,MaterialPageRoute(
-                      builder: (context)=>(DashBoard())
-                    ));
+                    Navigator.push(context,
+                    BouncingRoute(page:DashBoard()),
+                    );
                   },
                 ),
               )),
