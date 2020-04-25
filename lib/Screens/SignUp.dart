@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
 import 'package:uzairleo_homewifi/Screens/Login.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -176,7 +177,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontSize: 18),
                   ),
                   onPressed: () {
-                    print("Login pressed");
+                    print("Signuo pressed");
+                    Navigator.push(context,MaterialPageRoute(
+                      builder: (context)=>(DashBoard())
+                    ));
                   },
                 ),
               )),
@@ -189,11 +193,8 @@ class _SignUpPageState extends State<SignUpPage> {
               GestureDetector(
                   onTap: () {
                     print("Login pressed");
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (context) => (LoginSevenPage())),
-                    );
-                  },
+                    Navigator.of(context).pop();
+                                   },
                   child: Text("Login ",
                       style: TextStyle(
                           color: Colors.red,

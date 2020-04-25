@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
 import 'package:uzairleo_homewifi/Screens/SignUp.dart';
 
 class LoginSevenPage extends StatefulWidget {
@@ -149,6 +150,9 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                   ),
                   onPressed: () {
                     print("Login pressed");
+                    Navigator.push(context,MaterialPageRoute(
+                      builder: (context)=>(DashBoard())
+                    ));
                   },
                 ),
               )),
@@ -165,7 +169,7 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                 onTap: (){
                   print("SignUp pressed");
                   Navigator.of(context).push(
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                       builder: (context)=>(SignUpPage())),
                   );
                 },

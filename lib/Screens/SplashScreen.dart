@@ -1,11 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:uzairleo_homewifi/Screens/Login.dart';
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+      Duration(seconds:4),
+      (){
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder:(context)=>(LoginSevenPage()))
+        );
+              }
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,9 +73,8 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: Colors.white70,
       child: CircleAvatar(
         radius: 58,
-        child: Image(
-          image: AssetImage('Assets/leo.png')),
-      ),
+        backgroundImage:  AssetImage('Assets/leo.png')),
+      
     );
   }
 }
