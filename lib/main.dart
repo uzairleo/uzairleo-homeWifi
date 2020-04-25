@@ -12,7 +12,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
        primarySwatch: Colors.blue,
       ),
-      home:SplashScreen(),
+      home:
+      // Text("uzairleo")
+      SplashScreen(),
     );
   }
 }

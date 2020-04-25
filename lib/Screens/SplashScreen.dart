@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-
+              SizedBox(height:50.0),
               circularLogo(),
               uzairHomeWifi(),
               loadingArea(),
