@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uzairleo_homewifi/Screens/Login.dart';
 import 'package:uzairleo_homewifi/Screens/SplashScreen.dart';
 
 void main() => runApp(MyApp());
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
        primarySwatch: Colors.blue,
       ),
       home:
+      // LoginSevenPage()
       // Text("uzairleo")
       SplashScreen(),
     );
