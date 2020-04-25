@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
-import 'package:uzairleo_homewifi/Screens/Login.dart';
+
 
 class SignUpPage extends StatefulWidget {
   static final String path = "lib/src/pages/login/login7.dart";

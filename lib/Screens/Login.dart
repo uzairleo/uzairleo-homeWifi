@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
 import 'package:uzairleo_homewifi/Screens/SignUp.dart';
-import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 import 'package:uzairleo_homewifi/Widgets/FadeRoute.dart';
 
 class LoginSevenPage extends StatefulWidget {
