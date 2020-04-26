@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uzairleo_homewifi/Screens/Setting.dart';
 import 'package:uzairleo_homewifi/Widgets/Aboutme.dart';
@@ -23,35 +24,69 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   @override
+  void initState() { 
+    super.initState();
+    
+  }
+  Future<bool> _onBackPressed() {
+    return showDialog(
+          context: context,
+          builder: (context) => new AlertDialog(
+            title: new Text('Are you sure?'),
+            content: new Text('Do you want to exit an App'),
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: Text("NO"),
+              ),
+              SizedBox(height: 16),
+              new FlatButton(
+                onPressed: () {
+                  // Navigator.of(context).pop(true);
+                  SystemNavigator.pop();
+                },
+                child: Text("YES"),
+              ),
+            ],
+          ),
+        ) ??
+        false;
+  }
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: themeColor,
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: double.infinity,
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              height: 10,
-            ),
-            _utilityRow(),
-            SizedBox(
-              height: 40,
-            ),
-            _connectivitySymbol(),
-            SizedBox(
-              height: 20,
-            ),
-            _connectButton(),
-            SizedBox(
-              height: 16,
-            ),
-            _timer(),
-            SizedBox(
-              height: 0,
-            ),
-            _warning()
-          ],
+    return WillPopScope(
+          onWillPop: _onBackPressed,
+          child: Scaffold(
+        backgroundColor: themeColor,
+        body: Container(
+          height: MediaQuery.of(context).size.height,
+          width: double.infinity,
+          child: ListView(
+            children: <Widget>[
+              SizedBox(
+                height: 10,
+              ),
+              _utilityRow(),
+              SizedBox(
+                height: 40,
+              ),
+              _connectivitySymbol(),
+              SizedBox(
+                height: 20,
+              ),
+              _connectButton(),
+              SizedBox(
+                height: 16,
+              ),
+              _timer(),
+              SizedBox(
+                height: 0,
+              ),
+              _warning()
+            ],
+          ),
         ),
       ),
     );
