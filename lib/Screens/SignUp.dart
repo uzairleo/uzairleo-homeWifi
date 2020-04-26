@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
 import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 
+import 'Login.dart';
+
 // import 'package:uzairleo_homewifi/Screens/Login.dart';
 var email = TextEditingController();
 var pswd = TextEditingController();
@@ -201,10 +203,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   onPressed: () {
                     print("Signup pressed");
-                    if(email.text.isNotEmpty){Navigator.push(
-                      context,
-                      BouncingRoute(page: DashBoard()),
-                    );}
+                    if (email.text.length > 15) {
+                      Navigator.push(
+                        context,
+                        BouncingRoute(page: DashBoard()),
+                      );
+                    } else {
+                      showAuthenticationDialog(context);
+                      }
                   },
                 ),
               )),

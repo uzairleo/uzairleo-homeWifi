@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,6 +7,7 @@ import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
 import 'package:uzairleo_homewifi/Screens/SignUp.dart';
 import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 import 'package:uzairleo_homewifi/Widgets/FadeRoute.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 var email = TextEditingController();
 var pswd = TextEditingController();
@@ -177,21 +180,8 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                         BouncingRoute(page: DashBoard()),
                       );
                     } else {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context){
-                          return AlertDialog(
-                            title: Text("Error !"),
-                            content: Text("Its Look like you are not "
-                                          " a regis-tered user.press the "
-                                          "signup to register first then"
-                                          "login again with corr-ect credentials."
-                                          "Before proceed make sure you enter correct "
-                                          "email and password"),
-                          );
-                        }
-                      );
-                    }
+                      showAuthenticationDialog(context);
+                      }
                   },
                 ),
               )),
@@ -319,3 +309,72 @@ class WaveClipper2 extends CustomClipper<Path> {
     return false;
   }
 }
+
+  showAuthenticationDialog(BuildContext context){
+    showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Dialog(
+                              elevation: 0,
+                              child: Container(
+                                  height: 230,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            "Error !",
+                                            style: TextStyle(fontSize: 24.0,color: Colors.red),
+                                          ),
+                                          Divider(color: Colors.red,),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 8.0,
+                                                left: 10,
+                                                bottom: 0.0),
+                                            child: AutoSizeText(
+                                              "Its Look like you are not "
+                                              " a registered user.press the "
+                                              "signup to register first then"
+                                              "login again with corr-ect credentials."
+                                              "Before proceed make sure you enter correct "
+                                              "email and password",
+                                              style: TextStyle(fontSize: 16),
+                                            ),
+                                          ),
+                                          
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            children: <Widget>[
+                                            
+                                          FlatButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text("Try Again",style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 17
+                                              ),)),
+                                              SizedBox(width:8.0),
+                                          FlatButton(
+                                              onPressed: () {
+                                                // setState(() {
+                                                  exit(0);
+                                                // });
+                                              },
+                                              child: Text("Quit",style: TextStyle(
+                                                color: Colors.blue,
+                                                fontSize: 17
+                                              ))),
+                                        
+                                          ],)
+                                          ]),
+                                  )),
+                            );
+                          });
+                    
+  }
