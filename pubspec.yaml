@@ -25,6 +25,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_spinkit: ^4.1.2+1
   font_awesome_flutter: any
+  url_launcher: any
   
 
 dev_dependencies:
