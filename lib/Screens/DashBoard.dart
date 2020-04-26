@@ -19,15 +19,69 @@ class _DashBoardState extends State<DashBoard> {
           children: <Widget>[
               SizedBox(height: 10,),
               _utilityRow(),
-              SizedBox(height: 50,),
-              _connectivitySymbol(),
               SizedBox(height: 40,),
-              _connectButton(),
+              _connectivitySymbol(),
               SizedBox(height: 20,),
+              _connectButton(),
+              SizedBox(height: 16,),
               _timer(),
+              SizedBox(height: 0,),
+              _warning()
             
           ],
         ),
+      ),
+    );
+  }
+  _warning(){
+    return Container(
+      width: 360,
+      height: 100,
+      decoration: BoxDecoration(
+        // border:Border.all()
+         border: Border.all(color:Colors.black87,),
+                  color: Color.fromARGB(255, 248, 216, 216),
+                  borderRadius: BorderRadius.circular(0.0)
+               
+        
+      ),
+      child: Stack(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Positioned(
+            left: 8.5,
+            top: 19,
+                      child: Container(
+                alignment: Alignment.topCenter,
+                width: 340,
+                height: 90,
+                decoration: BoxDecoration(
+                  // border: Border.all(color:Colors.black87,),
+                  // color: Color.fromARGB(255, 236, 131, 131),
+                  // borderRadius: BorderRadius.circular(8.0)
+                ),
+                ),
+          ),
+          Positioned(
+            left: 03,
+            top: 0,
+            child: Icon(Icons.warning,size: 38,)),
+            Positioned(
+              left: 40.0,
+              top: 10,
+                          child: Text('Warning !', style: TextStyle(fontWeight: FontWeight.bold),  ),
+            ),
+            Positioned(
+              left: 48,
+              top:28,
+              child: Align(
+                alignment: Alignment.center,
+                              child: Text('Every user have 150mb/day for Downloading. '
+                      ' If\nsomebody try to exceed this limit.Their ip address\n'
+                      'will be thrown to blacklist automatically '
+                       'by flutter\nbolt using network access protocols.'),
+              ))
+                           ],
       ),
     );
   }
@@ -45,7 +99,9 @@ class _DashBoardState extends State<DashBoard> {
             ],
           ),
           SizedBox(height:10.0),
-          Text("Duration : 00:00:00"),
+          Text("Duration : 00:00:00",style: TextStyle(
+            fontSize: 16
+          ),),
           // Text(""),  
       ],
     );
