@@ -6,13 +6,14 @@ import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 
 var starIcon = Icons.star_border;
 var lightIcon = FontAwesomeIcons.lightbulb;
-var themeColor=Colors.white;
-  var flag = false;
-  var connectButton = "Connect";
-  var circle1 = Color.fromARGB(255, 241, 202, 152);
-  var circle2 = Color.fromARGB(255, 241, 182, 78);
-  var circleImage = 'minus';
-  var bgcolor = Color.fromARGB(255, 255, 51, 0);
+var themeColor = Colors.white;
+var flag = false;
+var connectButton = "Connect";
+var circle1 = Color.fromARGB(255, 241, 202, 152);
+var circle2 = Color.fromARGB(255, 241, 182, 78);
+var circleImage = 'minus';
+var bgcolor = Color.fromARGB(255, 255, 51, 0);
+
 class DashBoard extends StatefulWidget {
   @override
   _DashBoardState createState() => _DashBoardState();
@@ -142,16 +143,18 @@ class _DashBoardState extends State<DashBoard> {
             borderRadius: BorderRadius.circular(10.0)),
         child: InkWell(
           onTap: () {
-            Future.delayed(
-              Duration(seconds: 3),
-              (){
-                
-                setState(() {
-              print("future called successfully");
-              (circleImage=='minus')?circleImage = 'plus':circleImage='minus';
-              (flag==false)?flag=true:flag=false;
-              (connectButton=='Connect')?connectButton="Connected":connectButton="Connect";
-            });});
+            Future.delayed(Duration(seconds: 3), () {
+              setState(() {
+                print("future called successfully");
+                (circleImage == 'minus')
+                    ? circleImage = 'plus'
+                    : circleImage = 'minus';
+                (flag == false) ? flag = true : flag = false;
+                (connectButton == 'Connect')
+                    ? connectButton = "Connected"
+                    : connectButton = "Connect";
+              });
+            });
           },
           child: Center(
               child: Text(
@@ -182,6 +185,9 @@ class _DashBoardState extends State<DashBoard> {
     );
   }
 
+      
+  
+
   _utilityRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -190,10 +196,8 @@ class _DashBoardState extends State<DashBoard> {
         _urowbuttons(
             icondata: Icons.vpn_key,
             onpressed: () {
-              setState(() {
-               
-               
-               });
+              showPassword(context);
+              
             }),
         _urowbuttons(
             icondata: lightIcon,
@@ -202,7 +206,7 @@ class _DashBoardState extends State<DashBoard> {
                 (lightIcon == FontAwesomeIcons.lightbulb)
                     ? lightIcon = FontAwesomeIcons.solidLightbulb
                     : lightIcon = FontAwesomeIcons.lightbulb;
-        
+
                 (themeColor == Colors.white)
                     ? themeColor = Colors.grey
                     : themeColor = Colors.white;
@@ -211,8 +215,7 @@ class _DashBoardState extends State<DashBoard> {
         _urowbuttons(
             icondata: Icons.settings,
             onpressed: () {
-                Navigator.push(
-                    context, BouncingRoute(page:Settings()));
+              Navigator.push(context, BouncingRoute(page: Settings()));
             }),
         _urowbuttons(
             icondata: Icons.info,
