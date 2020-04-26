@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uzairleo_homewifi/Screens/Setting.dart';
 import 'package:uzairleo_homewifi/Widgets/Aboutme.dart';
+import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 
 var starIcon = Icons.star_border;
 var lightIcon = FontAwesomeIcons.lightbulb;
@@ -209,8 +211,8 @@ class _DashBoardState extends State<DashBoard> {
         _urowbuttons(
             icondata: Icons.settings,
             onpressed: () {
-              //   Navigator.push(
-              //       context, BouncingRoute(routeWidget: Settings()));
+                Navigator.push(
+                    context, BouncingRoute(page:Settings()));
             }),
         _urowbuttons(
             icondata: Icons.info,
