@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
-import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 
 import 'Login.dart';
 
 // import 'package:uzairleo_homewifi/Screens/Login.dart';
-var email = TextEditingController();
-var pswd = TextEditingController();
-var confPswd = TextEditingController();
+// var email = TextEditingController();
+// var pswd = TextEditingController();
+// var confPswd = TextEditingController();
 
 class SignUpPage extends StatefulWidget {
   static final String path = "lib/src/pages/login/login7.dart";
@@ -25,10 +23,10 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   void dispose() {
     super.dispose();
-    email.dispose();
-    pswd.dispose();
-    confPswd.dispose();
-    email.clear();
+    // email.dispose();
+    // pswd.dispose();
+    // confPswd.dispose();
+    // email.clear();
   }
 
   @override
@@ -204,11 +202,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   onPressed: () {
                     print("Signup pressed");
                     if (email.text.length > 14 && pswd.text.length>5) {
-                      Navigator.push(
-                        context,
-                        BouncingRoute(page: DashBoard()),
-                      );
-                    } else {
+                      Navigator.of(context).pop();
+                      } else {
                       showAuthenticationDialog(context);
                       }
                   },
