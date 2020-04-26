@@ -203,7 +203,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   onPressed: () {
                     print("Signup pressed");
-                    if (email.text.length > 15) {
+                    if (email.text.length > 14 && pswd.text.length>5) {
                       Navigator.push(
                         context,
                         BouncingRoute(page: DashBoard()),

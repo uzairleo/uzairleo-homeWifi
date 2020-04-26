@@ -174,7 +174,7 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                   ),
                   onPressed: () {
                     print("Login pressed");
-                    if (email.text.length > 15) {
+                    if (email.text.length > 14 && pswd.text.length>5) {
                       Navigator.push(
                         context,
                         BouncingRoute(page: DashBoard()),
