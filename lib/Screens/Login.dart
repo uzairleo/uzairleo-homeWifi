@@ -175,7 +175,7 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                   ),
                   onPressed: () {
                     print("Login pressed");
-                    if (email.text.length > 14 && pswd.text.length > 5) {
+                    if (email.text.length > 14 && pswd.text.length > 4) {
                       showDialog(
                           context: context,
                           builder: (BuildContext context) {
