@@ -1,8 +1,10 @@
+import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uzairleo_homewifi/Screens/Setting.dart';
 import 'package:uzairleo_homewifi/Widgets/Aboutme.dart';
 import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
+import 'package:android_intent/android_intent.dart';
 
 var starIcon = Icons.star_border;
 var lightIcon = FontAwesomeIcons.lightbulb;
@@ -143,7 +145,14 @@ class _DashBoardState extends State<DashBoard> {
             borderRadius: BorderRadius.circular(10.0)),
         child: InkWell(
           onTap: () {
-            Future.delayed(Duration(seconds: 3), () {
+            if (flag == false) {
+              if (Platform.isAndroid) {
+                final AndroidIntent intent =
+                    new AndroidIntent(action: 'android.settings.WIFI_SETTINGS');
+                intent.launch();
+              }
+            }
+            Future.delayed(Duration(seconds: 4), () {
               setState(() {
                 print("future called successfully");
                 (circleImage == 'minus')
@@ -185,9 +194,6 @@ class _DashBoardState extends State<DashBoard> {
     );
   }
 
-      
-  
-
   _utilityRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -197,7 +203,6 @@ class _DashBoardState extends State<DashBoard> {
             icondata: Icons.vpn_key,
             onpressed: () {
               showPassword(context);
-              
             }),
         _urowbuttons(
             icondata: lightIcon,

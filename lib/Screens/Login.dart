@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,13 +6,30 @@ import 'package:uzairleo_homewifi/Screens/SignUp.dart';
 import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 import 'package:uzairleo_homewifi/Widgets/FadeRoute.dart';
 
+var email = TextEditingController();
+var pswd = TextEditingController();
+var confPswd = TextEditingController();
+
 class LoginSevenPage extends StatefulWidget {
-    static final String path = "lib/src/pages/login/login7.dart";
+  static final String path = "lib/src/pages/login/login7.dart";
   @override
   _LoginSevenPageState createState() => _LoginSevenPageState();
 }
 
 class _LoginSevenPageState extends State<LoginSevenPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    email.dispose();
+    pswd.dispose();
+    confPswd.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +86,7 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                     ],
                   ),
                   width: double.infinity,
-                  height:280,
+                  height: 280,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
                           colors: [Color(0xffff3a5a), Color(0xfffe494d)])),
@@ -87,7 +103,8 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
               elevation: 2.0,
               borderRadius: BorderRadius.all(Radius.circular(30)),
               child: TextField(
-                onChanged: (String value){},
+                controller: email,
+                onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
                 decoration: InputDecoration(
                     hintText: "Email",
@@ -114,8 +131,10 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
               elevation: 2.0,
               borderRadius: BorderRadius.all(Radius.circular(30)),
               child: TextField(
-                onChanged: (String value){},
+                controller: pswd,
+                onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
+                obscureText: true,
                 decoration: InputDecoration(
                     hintText: "Password",
                     prefixIcon: Material(
@@ -152,36 +171,66 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                   ),
                   onPressed: () {
                     print("Login pressed");
-                    Navigator.push(context,
-                   BouncingRoute(page:DashBoard()),
-                   );
+                    if (email.text.length > 15) {
+                      Navigator.push(
+                        context,
+                        BouncingRoute(page: DashBoard()),
+                      );
+                    } else {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context){
+                          return AlertDialog(
+                            title: Text("Error !"),
+                            content: Text("Its Look like you are not "
+                                          " a regis-tered user.press the "
+                                          "signup to register first then"
+                                          "login again with corr-ect credentials."
+                                          "Before proceed make sure you enter correct "
+                                          "email and password"),
+                          );
+                        }
+                      );
+                    }
                   },
                 ),
               )),
-              SizedBox(height: 20,),
-          Center(
-            child: Text("FORGOT PASSWORD ?", style: TextStyle(color:Colors.red,fontSize: 12 ,fontWeight: FontWeight.w700),),
+          SizedBox(
+            height: 20,
           ),
-          SizedBox(height: 10,),
+          Center(
+            child: Text(
+              "FORGOT PASSWORD ?",
+              style: TextStyle(
+                  color: Colors.red, fontSize: 12, fontWeight: FontWeight.w700),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text("Don't have an Account ? ", style: TextStyle(color:Colors.black,fontSize: 12 ,fontWeight: FontWeight.normal),),
+              Text(
+                "Don't have an Account ? ",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal),
+              ),
               GestureDetector(
-                onTap: (){
-                  print("SignUp pressed");
-                  Navigator.of(context).push(
-                    FadeRoute(page:SignUpPage()),
+                  onTap: () {
+                    print("SignUp pressed");
+                    Navigator.of(context).push(
+                      FadeRoute(page: SignUpPage()),
                     );
-                },
-                child:
-                 Text("Sign Up ", 
-                 style: TextStyle(
-                   color:Colors.red, 
-                   fontWeight: FontWeight.w500,
-                   fontSize: 18,
-                    decoration: TextDecoration.underline ))),
-
+                  },
+                  child: Text("Sign Up ",
+                      style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          decoration: TextDecoration.underline))),
             ],
           )
         ],

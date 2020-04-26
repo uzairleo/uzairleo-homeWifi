@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:uzairleo_homewifi/Screens/DashBoard.dart';
 import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 
+// import 'package:uzairleo_homewifi/Screens/Login.dart';
+var email = TextEditingController();
+var pswd = TextEditingController();
+var confPswd = TextEditingController();
 
 class SignUpPage extends StatefulWidget {
   static final String path = "lib/src/pages/login/login7.dart";
@@ -11,6 +15,20 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    email.dispose();
+    pswd.dispose();
+    confPswd.dispose();
+    email.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,6 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
               elevation: 2.0,
               borderRadius: BorderRadius.all(Radius.circular(30)),
               child: TextField(
+                controller: email,
                 onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
                 decoration: InputDecoration(
@@ -113,6 +132,8 @@ class _SignUpPageState extends State<SignUpPage> {
               elevation: 2.0,
               borderRadius: BorderRadius.all(Radius.circular(30)),
               child: TextField(
+                obscureText: true,
+                controller: pswd,
                 onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
                 decoration: InputDecoration(
@@ -140,6 +161,8 @@ class _SignUpPageState extends State<SignUpPage> {
               elevation: 2.0,
               borderRadius: BorderRadius.all(Radius.circular(30)),
               child: TextField(
+                obscureText: true,
+                controller: confPswd,
                 onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
                 decoration: InputDecoration(
@@ -177,10 +200,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         fontSize: 18),
                   ),
                   onPressed: () {
-                    print("Signuo pressed");
-                    Navigator.push(context,
-                    BouncingRoute(page:DashBoard()),
-                    );
+                    print("Signup pressed");
+                    if(email.text.isNotEmpty){Navigator.push(
+                      context,
+                      BouncingRoute(page: DashBoard()),
+                    );}
                   },
                 ),
               )),
@@ -194,7 +218,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   onTap: () {
                     print("Login pressed");
                     Navigator.of(context).pop();
-                                   },
+                  },
                   child: Text("Login ",
                       style: TextStyle(
                           color: Colors.red,

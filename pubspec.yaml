@@ -26,6 +26,7 @@ dependencies:
   flutter_spinkit: ^4.1.2+1
   font_awesome_flutter: any
   url_launcher: any
+  android_intent: any
   
 
 dev_dependencies:
