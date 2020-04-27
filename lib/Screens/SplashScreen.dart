@@ -13,10 +13,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-      Duration(seconds:6),
+      Duration(seconds:5),
       (){
         Navigator.of(context).push(
-          MaterialPageRoute(
+        MaterialPageRoute(
             builder:(context)=>(LoginSevenPage()))
         );
               }

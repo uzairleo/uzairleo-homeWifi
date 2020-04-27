@@ -64,6 +64,7 @@ class _LicenseWidgetState extends State<LicenseWidget> {
                     onChanged: (value) {
                       setState(() {
                         cboxValue = value;
+                        // flag=true;
                       });
                     }),
                 Column(
@@ -90,7 +91,7 @@ class _LicenseWidgetState extends State<LicenseWidget> {
                 SizedBox(width: 8.0),
                 FlatButton(
                     onPressed: () {
-                      if (cboxValue == true && flag==true) {
+                      if (cboxValue == true || flag==true) {
                         Navigator.push(
                             context, BouncingRoute(page: DashBoard()));
                       }else{

@@ -206,10 +206,30 @@ var obscureText = true;
             height: 20,
           ),
           Center(
-            child: Text(
-              "FORGOT PASSWORD ?",
-              style: TextStyle(
-                  color: Colors.red, fontSize: 12, fontWeight: FontWeight.w700),
+            child: GestureDetector(
+              onTap: (){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context){
+                    return AlertDialog(
+                      actions: <Widget>[
+                        FlatButton(
+                          onPressed: (){
+                            Navigator.of(context).pop();
+                            }, 
+                        child: Text("OK"))
+                      ],
+                      title: Text("Status"),
+                      content: Text("If you forget your account crede-ntials contact your administrator => uzairleo"),
+                    );
+                  }
+                );
+              },
+                          child: Text(
+                "FORGOT PASSWORD ?",
+                style: TextStyle(
+                    color: Colors.red, fontSize: 12, fontWeight: FontWeight.w700),
+              ),
             ),
           ),
           SizedBox(
