@@ -10,8 +10,7 @@ import 'package:android_intent/android_intent.dart';
 
 import '../Widgets/Aboutme.dart';
 
-
-var status ='not';
+var status = 'not';
 var starIcon = Icons.star_border;
 var lightIcon = FontAwesomeIcons.lightbulb;
 var themeColor = Colors.white;
@@ -33,32 +32,32 @@ class _DashBoardState extends State<DashBoard> {
     super.initState();
   }
 
-  String seconds="00";
-  String minutes="00";
-  String hours="00";
-  var swatch=Stopwatch();
-   var dur= Duration(seconds: 1);
-void starttimer()
-{
-  Timer(dur, keeprunning);
-}
-void keeprunning()
-{
-  if(swatch.isRunning)
-  {
-    starttimer();
+  String seconds = "00";
+  String minutes = "00";
+  String hours = "00";
+  var swatch = Stopwatch();
+  var dur = Duration(seconds: 1);
+  void starttimer() {
+    Timer(dur, keeprunning);
   }
-  setState(() {
-    hours=swatch.elapsed.inHours.toString().padLeft(2,"0");
-    minutes=(swatch.elapsed.inMinutes%60).toString().padLeft(2,"0");
-    seconds=(swatch.elapsed.inSeconds%60).toString().padLeft(2,"0");
-  });
-}
+
+  void keeprunning() {
+    if (swatch.isRunning) {
+      starttimer();
+    }
+    setState(() {
+      hours = swatch.elapsed.inHours.toString().padLeft(2, "0");
+      minutes = (swatch.elapsed.inMinutes % 60).toString().padLeft(2, "0");
+      seconds = (swatch.elapsed.inSeconds % 60).toString().padLeft(2, "0");
+    });
+  }
+
   void startstopwatch() {
     swatch.start();
     starttimer();
   }
-  resetAndStopswatch(){
+
+  resetAndStopswatch() {
     swatch.reset();
     swatch.stop();
   }
@@ -181,6 +180,7 @@ void keeprunning()
       ),
     );
   }
+
   _timer() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -207,39 +207,38 @@ void keeprunning()
 
   _connectButton() {
     return GestureDetector(
-          onTap: () {
-            if (flag == false) {
-              if (Platform.isAndroid) {
-                final AndroidIntent intent =
-                    new AndroidIntent(action: 'android.settings.WIFI_SETTINGS');
-                intent.launch();
-              }
-            }
-            Future.delayed(Duration(seconds: 4), () {
-              
-              setState(() {
-                 (flag==false)?startstopwatch():resetAndStopswatch();
-                print("future called successfully");
-                (status=='not')?status='':status='not';
-                (circleImage == 'minus')
-                    ? circleImage = 'plus'
-                    : circleImage = 'minus';
-                (flag == false) ? flag = true : flag = false;
-                (connectButton == 'Connect')
-                    ? connectButton = "Connected"
-                    : connectButton = "Connect";
-              });
-            });
-          },
-    child:Center(
-      child: Container(
-        width: 180,
-        height: 60,
-        decoration: BoxDecoration(
-            color: Colors.blue,
-            border: Border.all(color: Colors.black87, width: 0.8),
-            borderRadius: BorderRadius.circular(10.0)),
-        child:Center(
+      onTap: () {
+        if (flag == false) {
+          if (Platform.isAndroid) {
+            final AndroidIntent intent =
+                new AndroidIntent(action: 'android.settings.WIFI_SETTINGS');
+            intent.launch();
+          }
+        }
+        Future.delayed(Duration(seconds: 4), () {
+          setState(() {
+            (flag == false) ? startstopwatch() : resetAndStopswatch();
+            print("future called successfully");
+            (status == 'not') ? status = '' : status = 'not';
+            (circleImage == 'minus')
+                ? circleImage = 'plus'
+                : circleImage = 'minus';
+            (flag == false) ? flag = true : flag = false;
+            (connectButton == 'Connect')
+                ? connectButton = "Connected"
+                : connectButton = "Connect";
+          });
+        });
+      },
+      child: Center(
+        child: Container(
+          width: 180,
+          height: 60,
+          decoration: BoxDecoration(
+              color: Colors.blue,
+              border: Border.all(color: Colors.black87, width: 0.8),
+              borderRadius: BorderRadius.circular(10.0)),
+          child: Center(
               child: Text(
             connectButton,
             style: TextStyle(color: Colors.white, fontSize: 18.0),
@@ -282,11 +281,10 @@ void keeprunning()
             icondata: lightIcon,
             onpressed: () {
               setState(() {
-                if(themeColor==Colors.white){
-                  
-                (wifiPassword=='imaandaro302')?
-                wifiPassword='warkadang336'
-                :wifiPassword='imaandaro302';
+                if (themeColor == Colors.white) {
+                  (wifiPassword == 'imaandaro302')
+                      ? wifiPassword = 'warkadang336'
+                      : wifiPassword = 'imaandaro302';
                 }
                 (lightIcon == FontAwesomeIcons.lightbulb)
                     ? lightIcon = FontAwesomeIcons.solidLightbulb
@@ -316,8 +314,8 @@ void keeprunning()
       padding:
           const EdgeInsets.only(left: 12.0, right: 12.0, top: 0.0, bottom: 0.0),
       child: CircleAvatar(
-        backgroundColor: Color.fromARGB(255, 17, 17, 17),
-        radius: 29.0,
+        backgroundColor: Color.fromARGB(255, 52, 50, 50),
+        radius: 26.0,
         child: IconButton(
           icon: Icon(
             icondata,
