@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +7,7 @@ import 'package:uzairleo_homewifi/Widgets/FadeRoute.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 import '../Widgets/LicenseWidget.dart';
+import 'SignUp.dart';
 
 var email = TextEditingController();
 var pswd = TextEditingController();
@@ -33,7 +32,9 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
     // pswd.dispose();
     // confPswd.dispose();
   }
-
+  
+var visColor;
+var obscureText = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -138,8 +139,22 @@ class _LoginSevenPageState extends State<LoginSevenPage> {
                 controller: pswd,
                 onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
-                obscureText: true,
+                obscureText: obscureText,
                 decoration: InputDecoration(
+                     suffix: GestureDetector(
+                        child:
+                            Icon(Icons.visibility, color: visColor, size: 16),
+                        onTap: () {
+                          setState(() {
+                            (visColor == null)
+                                ? visColor = Colors.blue
+                                : visColor = null;
+                            (obscureText == true)
+                                ? obscureText = false
+                                : obscureText = true;
+                          });
+                        }),
+                  
                     hintText: "Password",
                     prefixIcon: Material(
                       elevation: 0,

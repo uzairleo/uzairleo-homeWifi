@@ -22,9 +22,9 @@ class _LicenseWidgetState extends State<LicenseWidget> {
         height: 500,
         // width: 400,
         decoration: BoxDecoration(),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          // mainAxisAlignment: MainAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 8.0, left: 8.0),
@@ -90,7 +90,7 @@ class _LicenseWidgetState extends State<LicenseWidget> {
                 SizedBox(width: 8.0),
                 FlatButton(
                     onPressed: () {
-                      if (cboxValue == true||flag==true) {
+                      if (cboxValue == true && flag==true) {
                         Navigator.push(
                             context, BouncingRoute(page: DashBoard()));
                       }else{

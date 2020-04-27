@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 
 import 'Login.dart';
 
+var visColor;
+var obscureText = true;
+var visColor2;
+var obscureText2 = true;
 // import 'package:uzairleo_homewifi/Screens/Login.dart';
 // var email = TextEditingController();
 // var pswd = TextEditingController();
@@ -132,11 +136,24 @@ class _SignUpPageState extends State<SignUpPage> {
               elevation: 2.0,
               borderRadius: BorderRadius.all(Radius.circular(30)),
               child: TextField(
-                obscureText: true,
+                obscureText: obscureText2,
                 controller: pswd,
                 onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
                 decoration: InputDecoration(
+                    suffix: GestureDetector(
+                        child:
+                            Icon(Icons.visibility, color: visColor2, size: 16),
+                        onTap: () {
+                          setState(() {
+                            (visColor2 == null)
+                                ? visColor2 = Colors.blue
+                                : visColor2 = null;
+                            (obscureText2 == true)
+                                ? obscureText2 = false
+                                : obscureText2 = true;
+                          });
+                        }),
                     hintText: "Password",
                     prefixIcon: Material(
                       elevation: 0,
@@ -161,11 +178,25 @@ class _SignUpPageState extends State<SignUpPage> {
               elevation: 2.0,
               borderRadius: BorderRadius.all(Radius.circular(30)),
               child: TextField(
-                obscureText: true,
+                obscureText: obscureText,
                 controller: confPswd,
                 onChanged: (String value) {},
                 cursorColor: Colors.deepOrange,
+                
                 decoration: InputDecoration(
+                    suffix: GestureDetector(
+                        child:
+                            Icon(Icons.visibility, color: visColor, size: 16),
+                        onTap: () {
+                          setState(() {
+                            (visColor == null)
+                                ? visColor = Colors.blue
+                                : visColor = null;
+                            (obscureText == true)
+                                ? obscureText = false
+                                : obscureText = true;
+                          });
+                        }),
                     hintText: "Confirm Password",
                     prefixIcon: Material(
                       elevation: 0,
@@ -201,11 +232,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   onPressed: () {
                     print("Signup pressed");
-                    if (email.text.length > 14 && pswd.text.length>5) {
+
+                    if (email.text.length > 14 &&
+                        pswd.text.length > 4 &&
+                        (pswd.text.toString() == confPswd.text.toString())) {
                       Navigator.of(context).pop();
-                      } else {
+                    } else {
                       showAuthenticationDialog(context);
-                      }
+                    }
                   },
                 ),
               )),

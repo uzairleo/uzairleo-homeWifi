@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io' show Platform;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,8 @@ import 'package:uzairleo_homewifi/Widgets/Aboutme.dart';
 import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 import 'package:android_intent/android_intent.dart';
 
+
+var status ='not';
 var starIcon = Icons.star_border;
 var lightIcon = FontAwesomeIcons.lightbulb;
 var themeColor = Colors.white;
@@ -24,10 +27,36 @@ class DashBoard extends StatefulWidget {
 
 class _DashBoardState extends State<DashBoard> {
   @override
-  void initState() { 
+  void initState() {
     super.initState();
-    
   }
+
+  String seconds="00";
+  String minutes="00";
+  String hours="00";
+  var swatch=Stopwatch();
+   var dur= Duration(seconds: 1);
+void starttimer()
+{
+  Timer(dur, keeprunning);
+}
+void keeprunning()
+{
+  if(swatch.isRunning)
+  {
+    starttimer();
+  }
+  setState(() {
+    hours=swatch.elapsed.inHours.toString().padLeft(2,"0");
+    minutes=(swatch.elapsed.inMinutes%60).toString().padLeft(2,"0");
+    seconds=(swatch.elapsed.inSeconds%60).toString().padLeft(2,"0");
+  });
+}
+  void startstopwatch() {
+    swatch.start();
+    starttimer();
+  }
+
   Future<bool> _onBackPressed() {
     return showDialog(
           context: context,
@@ -54,11 +83,12 @@ class _DashBoardState extends State<DashBoard> {
         ) ??
         false;
   }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-          onWillPop: _onBackPressed,
-          child: Scaffold(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
         backgroundColor: themeColor,
         body: Container(
           height: MediaQuery.of(context).size.height,
@@ -145,7 +175,6 @@ class _DashBoardState extends State<DashBoard> {
       ),
     );
   }
-
   _timer() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -154,6 +183,7 @@ class _DashBoardState extends State<DashBoard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text("  You are "),
+            Text(" $status "),
             Text(" connected ", style: TextStyle(fontWeight: FontWeight.bold)),
             Text(" to "),
             Text("iAmUzairLeO", style: TextStyle(fontWeight: FontWeight.bold))
@@ -161,7 +191,7 @@ class _DashBoardState extends State<DashBoard> {
         ),
         SizedBox(height: 10.0),
         Text(
-          "Duration : 00:00:00",
+          "Duration : $hours : $minutes : $seconds",
           style: TextStyle(fontSize: 16),
         ),
         // Text(""),
@@ -178,7 +208,7 @@ class _DashBoardState extends State<DashBoard> {
             color: Colors.blue,
             border: Border.all(color: Colors.black87, width: 0.8),
             borderRadius: BorderRadius.circular(10.0)),
-        child: InkWell(
+        child: GestureDetector(
           onTap: () {
             if (flag == false) {
               if (Platform.isAndroid) {
@@ -188,8 +218,11 @@ class _DashBoardState extends State<DashBoard> {
               }
             }
             Future.delayed(Duration(seconds: 4), () {
+              
               setState(() {
+                 startstopwatch();
                 print("future called successfully");
+                (status=='not')?status='':status='not';
                 (circleImage == 'minus')
                     ? circleImage = 'plus'
                     : circleImage = 'minus';
