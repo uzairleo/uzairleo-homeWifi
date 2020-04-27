@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-  var password="imaandaro302";
+  var wifiPassword="imaandaro302";
 
   
 
@@ -147,7 +147,7 @@ info(BuildContext context) {
                   Padding(
                     padding: const EdgeInsets.only(left: 18.0),
                     child: Text(
-                      password,
+                      wifiPassword,
                       style: TextStyle(
                           fontSize: 24.0,
                           fontWeight: FontWeight.bold,

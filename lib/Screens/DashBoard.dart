@@ -8,6 +8,8 @@ import 'package:uzairleo_homewifi/Widgets/Aboutme.dart';
 import 'package:uzairleo_homewifi/Widgets/BouncingRoute.dart';
 import 'package:android_intent/android_intent.dart';
 
+import '../Widgets/Aboutme.dart';
+
 
 var status ='not';
 var starIcon = Icons.star_border;
@@ -55,6 +57,10 @@ void keeprunning()
   void startstopwatch() {
     swatch.start();
     starttimer();
+  }
+  resetAndStopswatch(){
+    swatch.reset();
+    swatch.stop();
   }
 
   Future<bool> _onBackPressed() {
@@ -200,15 +206,7 @@ void keeprunning()
   }
 
   _connectButton() {
-    return Center(
-      child: Container(
-        width: 180,
-        height: 60,
-        decoration: BoxDecoration(
-            color: Colors.blue,
-            border: Border.all(color: Colors.black87, width: 0.8),
-            borderRadius: BorderRadius.circular(10.0)),
-        child: GestureDetector(
+    return GestureDetector(
           onTap: () {
             if (flag == false) {
               if (Platform.isAndroid) {
@@ -220,7 +218,7 @@ void keeprunning()
             Future.delayed(Duration(seconds: 4), () {
               
               setState(() {
-                 startstopwatch();
+                 (flag==false)?startstopwatch():resetAndStopswatch();
                 print("future called successfully");
                 (status=='not')?status='':status='not';
                 (circleImage == 'minus')
@@ -233,7 +231,15 @@ void keeprunning()
               });
             });
           },
-          child: Center(
+    child:Center(
+      child: Container(
+        width: 180,
+        height: 60,
+        decoration: BoxDecoration(
+            color: Colors.blue,
+            border: Border.all(color: Colors.black87, width: 0.8),
+            borderRadius: BorderRadius.circular(10.0)),
+        child:Center(
               child: Text(
             connectButton,
             style: TextStyle(color: Colors.white, fontSize: 18.0),
@@ -276,6 +282,12 @@ void keeprunning()
             icondata: lightIcon,
             onpressed: () {
               setState(() {
+                if(themeColor==Colors.white){
+                  
+                (wifiPassword=='imaandaro302')?
+                wifiPassword='warkadang336'
+                :wifiPassword='imaandaro302';
+                }
                 (lightIcon == FontAwesomeIcons.lightbulb)
                     ? lightIcon = FontAwesomeIcons.solidLightbulb
                     : lightIcon = FontAwesomeIcons.lightbulb;
